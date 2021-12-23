@@ -1,0 +1,80 @@
+{% extends "app/layout.html" %}
+{% block content %}
+{% if form != None %}
+ <br><h2>Отправьте пожалуйста заполненный отзыв</h2><br>
+  <div>
+      <form method="post">
+          {% csrf_token %}
+          <label for="{{ form.name.id_for_label }}">{{ form.name.label }}:</label>
+          {{ form.name }}<br><br>
+          <script>
+              function name_focus() {
+                  $('#id_name').css('background-color', 'skyblue')
+              }
+
+              $('#id_name').focus(name_focus)
+          </script>
+          <script>
+              function name_blur() {
+                  $('#id_name').css('background-color', 'white')
+              }
+
+              $('#id_name').blur(name_blur)
+          </script>
+          <label for="{{ form.design.id_for_label }}">{{ form.design.label }}:</label>
+          {{ form.design }}
+          <label for="{{ form.functio.id_for_label }}">{{ form.functio.label }}:</label>
+          {{ form.functio }}
+          <label for="{{ form.internet.id_for_label }}">{{ form.internet.label }}:</label><br>
+          {{ form.internet }}<br><br>
+          <label for="{{ form.notice.id_for_label }}">{{ form.notice.label }}:</label>
+          {{ form.notice }}<br><br>
+          <label for="{{ form.message.id_for_label }}">{{ form.message.label }}:</label><br>
+          {{ form.message }}<br><br>
+          <script>
+              function message_focus() {
+                  $('#id_message').css('background-color', 'skyblue')
+              }
+
+              $('#id_message').focus(message_focus)
+          </script>
+          <script>
+              function message_blur() {
+                  $('#id_message').css('background-color', 'white')
+              }
+
+              $('#id_message').blur(message_blur)
+          </script>
+          <input id="in1" type="submit" value="Отправить">
+          <script>
+              function in1_mouseover() {
+                  $('#in1').css('color', 'skyblue')
+              }
+
+              $('#in1').mouseover(in1_mouseover)
+          </script>
+          <script>
+              function in1_mouseout() {
+                  $('#in1').css('color', 'black')
+              }
+
+              $('#in1').mouseout(in1_mouseout)
+          </script>
+      </form>
+  </div>
+{% else %}
+ <br><h2>Благодарим за ваш отзыв!</h2>
+ <h3>Ваш отзыв:</h3>
+ <ul>
+     <li><span>Имя:</span> {{ data.name }}</li>
+     <li><span>Оценка дизайна сайта:</span> {{ data.design }}</li>
+     <li><span>Оценка функциональности сайта:</span> {{ data.functio }}</li>
+     <li><span>Как часто вы посещаете наш сайт:</span> {{ data.internet }}</li>
+     <li>
+         <span>Стоит ли добавить фоновое оформление сайта в виде gif-картинок?:</span>
+         {{ data.notice }}
+     </li>
+     <li><span>Ваши пожелания:</span> {{ data.message }}</li>
+ </ul>
+{% endif %}
+{% endblock %}

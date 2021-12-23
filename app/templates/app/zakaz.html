@@ -1,0 +1,19 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+{% for commentz in commentsz %}
+<hr />
+<h7>{{commentz.date}}</h7>
+<h5>{{commentz.author}}</h5>
+<p>Имя клиента: {{commentz.name}}</p>
+<p>Телефон клиента: {{commentz.phone}}</p>
+<p>Адрес доставки: {{commentz.address}}</p>
+<p>Заказ: {{commentz.text|linebreaksbr}}</p>
+<a href="/admin/app/commentz/{{commentz.id}}">Удалить/Редактировать</a>
+{% endfor %}
+
+{% endblock %}

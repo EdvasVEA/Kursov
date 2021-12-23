@@ -1,0 +1,13 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<h2> {{post_4.title}} </h2>
+{% if post_4.image and post_4.image.url != '/media/temp.jpg' %}
+<img src="{{ post_4.image.url }}" alt="Картинка" width="300" height="200" />
+{% endif %}
+
+{% autoescape off %}
+<p> {{post_4.content|linebreaksbr}} </p>
+{% endautoescape %}
+
+<p><a href="{% url 'roll' %}"> Назад </a></p>
+{% endblock %}

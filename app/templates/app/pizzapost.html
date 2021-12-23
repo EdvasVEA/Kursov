@@ -1,0 +1,13 @@
+{% extends "app/layout.html" %}
+{% block content %}
+<h2> {{post_2.title}} </h2>
+{% if post_2.image and post_2.image.url != '/media/temp.jpg' %}
+<img src="{{ post_2.image.url }}" alt="Картинка" width="300" height="200" />
+{% endif %}
+
+{% autoescape off %}
+<p> {{post_2.content|linebreaksbr}} </p>
+{% endautoescape %}
+
+<p><a href="{% url 'pizza' %}"> Назад </a></p>
+{% endblock %}

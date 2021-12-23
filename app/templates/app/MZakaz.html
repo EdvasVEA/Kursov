@@ -1,0 +1,15 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+{% for commentz in commentsz %}
+<hr />
+<h7>{{commentz.date}}</h7>
+<h5>{{commentz.author}}</h5>
+<p>{{commentz.text|linebreaksbr}}</p>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+<li><a style="font-size: 100px" href="{% url 'pizza' %}">Пицца</a></li>
+<li><a style="font-size: 100px" href="{% url 'sup' %}">Супы</a></li>
+<li><a style="font-size: 100px" href="{% url 'roll' %}">Роллы</a></li>
+
+{% endblock %}

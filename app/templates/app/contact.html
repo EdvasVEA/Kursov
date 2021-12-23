@@ -1,0 +1,20 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+<address>
+    "Окинава"<br />
+    ул. Калинина, д. 32<br />
+    <abbr title="телефон">Телефон:</abbr>
+    8 (843) 233-44-33
+</address>
+
+<address>
+    <strong>Реклама и сотрудничество:</strong>   <a href="mailto:marketolog@okinavakazan.ru">marketolog@okinavakazan.ru</a><br />
+    <strong>Для коммерческих предложений:</strong> <a href="mailto:commerce@okinavakazan.ru">commerce@okinavakazan.ru</a>
+</address>
+
+{% endblock %}

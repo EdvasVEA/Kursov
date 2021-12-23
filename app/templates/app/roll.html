@@ -1,0 +1,20 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+<br />
+
+{% for post in posts %}
+<hr />
+<div class="">
+    <img src="{{ post.image.url }}" alt="Картинка" width="300" height="200" />
+    <h2> {{post.title}} </h2>
+    <h4> {{post.posted}} </h4>
+    <p> {{post.description}} </p>
+    <p><a href="{% url 'rollpost' parametr4=post.id %}"> Читать далее </a></p>
+</div>
+{% endfor %}
+
+<hr /><p><a href="{% url 'catalog' %}"> Назад </a></p>
+
+{% endblock %}

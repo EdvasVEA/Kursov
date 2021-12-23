@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Окинава</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
+    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand"><img src="{% static 'app/content/koala.jpg' %}" alt="logo" /></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'home' %}">Главная</a></li>
+                    <li><a href="{% url 'about' %}">О нас</a></li>
+                    <li><a href="{% url 'contact' %}">Контакты</a></li>
+                    <li><a href="{% url 'catalog' %}">Каталог</a></li>
+                    {% for group in request.user.groups.all %}
+                    {% if 'Клиент' == group.name %}
+                    <li><a href="{% url 'pool' %}">Отзыв</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    <li><a href="{% url 'blog' %}">Блог</a></li>
+                    <li><a href="{% url 'videopost' %}">Видео</a></li>
+                    {% if user.is_superuser %}
+                    <li><a href="{% url 'newpost' %}">Добавление статьи</a></li>
+                    {% endif %}
+                    {% for group in  request.user.groups.all %}
+                    {%  if 'Клиент' == group.name %}
+                    <li><a href="{% url 'newzakaz' %}">Добавить заказ</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% for group in  request.user.groups.all %}
+                    {%  if 'Клиент' == group.name %}
+                    <li><a href="{% url 'MZakaz' %}">Мои заказы</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    <li><a href="https://the-challenger.ru/eda/kak-pravilno-eda-new/kak-pravilno-est-sushi-i-rolly/" target="_blank"><img src="{% static 'app/content/logo1.jpg' %}" alt="Logo 1"/></a></li>
+                    <li><a href="https://instafood.com.ua/kak-pravilno-est-pitstsu-po-etiketu" target="_blank"><img src="{% static 'app/content/logo2.jpg' %}" alt="Logo 2"/></a></li>
+                    <li><a href="https://koko.by/advice/3944-kak-est-lapshu-palochkami.html#:~:text=%D0%9D%D0%B8%D0%B6%D0%BD%D1%8F%D1%8F%20%D0%BF%D0%B0%D0%BB%D0%BE%D1%87%D0%BA%D0%B0%20%D0%B2%D1%81%D0%B5%D0%B3%D0%B4%D0%B0%20%D0%BB%D0%B5%D0%B6%D0%B8%D1%82%20%D0%BD%D0%B5%D0%BF%D0%BE%D0%B4%D0%B2%D0%B8%D0%B6%D0%BD%D0%BE,%D1%80%D1%82%D1%83%20%D0%B8%20%D0%B2%D1%82%D1%8F%D0%B3%D0%B8%D0%B2%D0%B0%D1%82%D1%8C%20%D0%B2%20%D1%81%D0%B5%D0%B1%D1%8F." target="_blank"><img src="{% static 'app/content/logo3.jpg' %}" alt="Logo 3"/></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if not user.is_authenticated %}
+                    <li><a href="{% url 'registration' %}">Регистрация</a></li>
+                    {% endif %}
+                </ul>
+                {% include 'app/loginpartial.html' %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+{% block content %}{% endblock %}
+        <hr/>
+        <footer>
+            <a href="https://the-challenger.ru/eda/kak-pravilno-eda-new/kak-pravilno-est-sushi-i-rolly/" target="_blank"><img src="{% static 'app/content/logo1.jpg' %}" alt="Logo 1"/>  Как правильно кушать роллы</a><br /><br />
+            <a href="https://instafood.com.ua/kak-pravilno-est-pitstsu-po-etiketu" target="_blank"><img src="{% static 'app/content/logo2.jpg' %}" alt="Logo 2"/>  Как правильно кушать пиццу</a><br /><br />
+            <a href="https://koko.by/advice/3944-kak-est-lapshu-palochkami.html#:~:text=%D0%9D%D0%B8%D0%B6%D0%BD%D1%8F%D1%8F%20%D0%BF%D0%B0%D0%BB%D0%BE%D1%87%D0%BA%D0%B0%20%D0%B2%D1%81%D0%B5%D0%B3%D0%B4%D0%B0%20%D0%BB%D0%B5%D0%B6%D0%B8%D1%82%20%D0%BD%D0%B5%D0%BF%D0%BE%D0%B4%D0%B2%D0%B8%D0%B6%D0%BD%D0%BE,%D1%80%D1%82%D1%83%20%D0%B8%20%D0%B2%D1%82%D1%8F%D0%B3%D0%B8%D0%B2%D0%B0%D1%82%D1%8C%20%D0%B2%20%D1%81%D0%B5%D0%B1%D1%8F." target="_blank"><img src="{% static 'app/content/logo3.jpg' %}" alt="Logo 3"/>  Как правильно кушать лапшу</a><br /><br /><br />
+            <p>&copy; {{ year }} - Окинава</p>
+        </footer>
+    </div>
+
+    <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
+    <script src="{% static 'app/scripts/respond.js' %}"></script>
+{% block scripts %}{% endblock %}
+
+</body>
+</html>

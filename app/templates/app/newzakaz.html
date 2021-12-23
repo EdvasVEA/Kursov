@@ -1,0 +1,13 @@
+{% extends "app/layout.html" %}
+{% block content %}
+
+<h3>Добавить заказ</h3>
+<form method="POST">
+    {% csrf_token %} {# защита от атак CSRF #}
+    <div>
+        {{form.as_p}}
+        <button type="submit" class="save btn btn-default">Подтвердить заказ</button>
+    </div>
+</form>
+
+{% endblock %}
